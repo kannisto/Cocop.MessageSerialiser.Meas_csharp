@@ -1,0 +1,33 @@
+<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+<generateClasses language='CS' namespace='Cocop.MessageSerialiser.Meas.XsdGen'>
+  
+  <schema>C:\temp\_codegen_xsd_exe\xlink\xlink.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\gml\3.2.1.2\gmlBase.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\gmd\gmd.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\gmd\extent.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\gmd\metadataEntity.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\gco\gcoBase.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\gss\gss.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\gts\gts.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\gsr\gsr.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\om\2.0.0\observation.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\samplingSpatial\2.0.0\spatialSamplingFeature.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\sampling\2.0.2\samplingFeature.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\swe\swe.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\swe\simple_components.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\swe\simple_encodings.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\gmlcov\1.0.2\gmlcovAll.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\sos\2.0.1\sos.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\swes\2.0.0\swes.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\wsaddr\ws-addr.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\wsn\t-1.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\ows\1.1.0\ows19115subset.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\filter_MOD\2.0.3\filterAll.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\filter_MOD\2.0.3\expr.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\filter_MOD\2.0.3\filterCapabilities.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\sps\2.0.0\sps.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\cocopcustom\cocopcustom_1.1.xsd</schema>
+  <schema>C:\temp\_codegen_xsd_exe\cocopcustom\cocopcustom_1.2.xsd</schema>
+
+</generateClasses>
+</xsd>

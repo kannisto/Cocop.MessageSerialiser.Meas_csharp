@@ -1,0 +1,139 @@
+
+Author: Petri Kannisto, Tampere University, Finland
+Last modified: 2/2020
+
+
+To generate proxy classes from XML schemata, you can do the following.
+
+
+1) Download all XML schema files to your computer. If the files are compressed in a Zip file, extract the required *.xsd files.
+
+filter 2.0.3
+http://schemas.opengis.net/filter/
+
+gco 2012-07-13
+https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/
+
+gmd 2012-07-13
+https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/
+
+gml 3.2.1.2
+http://schemas.opengis.net/gml/
+
+gmlcov 1.0.2
+http://schemas.opengis.net/gmlcov/
+
+gsr 2012-07-13
+https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gsr/
+
+gss 2012-07-13
+https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gss/
+
+gts 2012-07-13
+https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gts/
+
+om 2.0.0
+http://schemas.opengis.net/om/
+
+ows 2.0.2
+http://schemas.opengis.net/ows/
+
+sampling 2.0.2
+http://schemas.opengis.net/sampling/
+
+samplingSpatial 2.0.0
+http://schemas.opengis.net/samplingSpatial/
+
+sos 2.0.1
+http://schemas.opengis.net/sos/
+
+sps 2.0.0
+http://schemas.opengis.net/sps/
+
+swe 2.0.1
+http://schemas.opengis.net/sweCommon/
+
+swes 2.0.0
+http://schemas.opengis.net/swes/
+
+tsml 1.0.0
+http://schemas.opengis.net/tsml/
+
+wsaddr 2005/08
+https://www.w3.org/2005/08/addressing/ws-addr.xsd
+
+wsn
+http://docs.oasis-open.org/wsn/t-1.xsd
+
+xlink
+https://www.w3.org/1999/xlink.xsd
+
+xml
+http://www.w3.org/2001/xml.xsd
+
+
+2) Modify the "filter" XML schema. In "filter.xsd", comment out the element "fes:logicOps" in "FilterPredicates". Otherwise, either the proxy generation fails or the proxies do not work as intended.
+
+Rename the "filter" folder to "filter_MOD" to indicate that modifications have been made. Furthermore, add a readme file in the folder to indicate what has been modified and where, because the schema is no longer standard conformant.
+
+
+3) Move the schemata into a subdirectory of C:\temp. The expected folder structure is in the file "parameters.xml", as you will later use this parameter file as a an argument in proxy generation.
+
+Also include the "cocopcustom" schema folder in the aforementioned folder.
+
+Also move "parameters.xml" into C:\temp.
+
+
+4) In the Developer Command Prompt for Visual Studio, use the following command:
+
+xsd C:\temp\_codegen_xsd_exe\tsml\1.0.0\timeseriesML.xsd /c /parameters:parameters.xml > xsdout.txt /o:xsd_cs_out
+
+The command should include all necessary XML schemata and generate to required proxies in the "xsd_cs_out" folder.
+
+The version of 'xsd.exe' used this far is 4.6.1055.0.
+
+
+5) Add the proxy file (.cs) to MessageSerialiserMeas project in the Visual Studio solution.
+
+
+6) Modify the generated proxies as needed. This will require some work, because the proxies are many and there are multiple spots that do not work as desired. Some of the errors will prevent your program from executing in the first place, whereas others only cause problems if you utilise them directly or indirectly.
+
+Most modifications are already in the file 'XsdGenMod.cs'. However, because some of them contradict with the original proxies, you must modify these originals in multiple positions as well.
+
+The following modifications are required in the proxy classes. Consider using keywords (such as "manually modified") to include in comments in modified spots. Then, it is possible to find your modifications later.
+
+- If you use XML comments, add the following line to the start of the file. This disables warnings about missing XML comments:
+#pragma warning disable 1591
+
+- In classes DirectPositionListType, DirectPositionType, MeasureListType, CodeOrNilReasonListType and MeasureOrNilReasonListType from XML namespace http://www.opengis.net/gml/3.2, comment out property "Text"
+
+- In class FeaturePropertyType from XML namespace http://www.opengis.net/gml/3.2, comment out property "AbstractFeature"
+
+- Above the declaration of class AbstractFeatureType from http://www.opengis.net/gml/3.2, add the following attribute:  [System.Xml.Serialization.XmlIncludeAttribute(typeof(SweDataComponentAsFeatureType))]
+
+- In class OM_ObservationType from XML namespace http://www.opengis.net/om/2.0, comment out property "phenomenonTime" and replace it as follows:
+
+/// <remarks/>
+[XmlElement(ElementName = "phenomenonTime")]
+public TimeInstantPropertyType PhenomenonTime
+{ get; set; }
+
+- In class RangeSetType from XML namespace http://www.opengis.net/gml/3.2, comment out property "Items"
+
+- Comment out the entire class DataRecordTypeField from XML namespace http://www.opengis.net/swe/2.0
+
+- In class AbstractDataComponentPropertyType from XML namespace http://www.opengis.net/swe/2.0, comment out property "AbstractDataComponent"
+
+- Above the declaration of classes AbstractDataComponentType, AbstractSWEIdentifiableType and AbstractSWEType from XML namespace http://www.opengis.net/swe/2.0, add the following attribute: [System.Xml.Serialization.XmlIncludeAttribute(typeof(AbstractGmlAsSweDataComponentType))]
+
+- In classes QuantityRangeType, CountRangeType and CategoryRangeType from XML namespace http://www.opengis.net/swe/2.0, comment out property "value"
+
+- In class GetObservationTypeTemporalFilter from XML namespace http://www.opengis.net/sos/2.0, comment out property "temporalOps"
+
+- Comment out the entire class BinaryTemporalOpType from XML namespace http://www.opengis.net/fes/2.0
+
+- In class ExtensibleResponseType from XML namespace http://www.opengis.net/swes/2.0, comment out property "extension"
+
+- In class AbstractGmlAsSweDataComponentType from XML namespace http://www.cocop-spire.eu/om-custom/1.1, comment out property "AbstractGML"
+
+- In class ArrayType from XML namespace http://www.cocop-spire.eu/om-custom/1.2, comment out property "Row"

@@ -1,0 +1,5 @@
+To enable unit testing, please retrieve the XML files from the specification:
+https://github.com/kannisto/Cocop.MessageSerialiser.Meas_spec
+
+Petri Kannisto
+1 Apr 2020
