@@ -72,7 +72,7 @@ The implemented features cover, for instance:
 
 This software has been implemented with C#/.NET. However, there is another 
 implementation in Java (see 
-https://github.com/kannisto/Cocop.MessageSerialiserMeas_java). Still, because
+https://github.com/kannisto/Cocop.MessageSerialiser.Meas_java). Still, because
 the serialisation syntax is XML, the messages do not restrict which platform to
 choose for implementation, as long as the messages comply with the
 standards-based profile. That is, you could have one application in .NET,
@@ -88,8 +88,8 @@ This repository contains the following applications:
 Source Code and API Doc
 -----------------------
 
-* Github repo: https://github.com/kannisto/Cocop.MessageSerialiserMeas_csharp
-* API documentation: https://kannisto.github.io/Cocop.MessageSerialiserMeas_csharp
+* Github repo: https://github.com/kannisto/Cocop.MessageSerialiser.Meas_csharp
+* API documentation: https://kannisto.github.io/Cocop.MessageSerialiser.Meas_csharp
 
 
 Messages
